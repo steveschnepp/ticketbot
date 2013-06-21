@@ -72,6 +72,10 @@ class TicketConfig:
             h.ReGroupFixup('.*?\((.*)\).*? Munin$'),
             'munin'
             )
+        self.providers['munin-monitoring.org/commits'] = h.TicketHtmlTitleProvider(
+            'https://github.com/munin-monitoring/munin/commit/',
+            h.ReGroupFixup('(.*) -[ 0-9a-f]+- ')
+            )
         self.providers['launchpad.net/ubuntu'] = h.TicketHtmlTitleProvider(
             'https://bugs.launchpad.net/ubuntu/+bug/',
             h.ReGroupFixup('Bug #[0-9]+ .(.*). : Bugs :'),
@@ -94,6 +98,9 @@ class TicketConfig:
         self._add('#munin', '(?<!\w)[uU]#([0-9]{4,})(?:(?=\W)|$)', self.providers['launchpad.net/ubuntu'])
         self._add('#munin', '(?<!\w)[rR]#([0-9]{4,})(?:(?=\W)|$)', self.providers['bugzilla.redhat.com'])
         self._add('#munin', '(?<!\w)#([0-9]{4,})(?:(?=\W)|$)', self.providers['munin-monitoring.org'])
+        # fuzzy match an --abbrv SHA1
+        # regex inspired from http://stackoverflow.com/questions/468370
+        self._add('#munin', '(?<!\w)([0-9a-fA-F]{5-20})(?:(?=\W)|$)', self.providers['munin-monitoring.org/commits'])
 
         self._add('#tor-test', '(?<!\w)[dD]#([0-9]{4,})(?:(?=\W)|$)', self.providers['bugs.debian.org'])
         self._add('#tor-test', '(?<!\w)#([0-9]{4,})(?:(?=\W)|$)', self.providers['munin-monitoring.org'])
