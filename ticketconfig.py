@@ -90,9 +90,9 @@ class TicketConfig:
 
         self._add('#ooni', '(?<!\w)(?:PR#|https://github.com/TheTorProject/ooni-probe/pull/)([0-9]+)(?:(?=\W)|$)', self.providers['github.com-tor-ooni-probe-pull'])
 
-        self._add('#munin', '(?<!\w)[dD]#([0-9]{4,})(?:(?=\W)|$)', self.providers['bugs.debian.org'])
-        self._add('#munin', '(?<!\w)[uU]#([0-9]{4,})(?:(?=\W)|$)', self.providers['launchpad.net/ubuntu'])
-        self._add('#munin', '(?<!\w)[rR]#([0-9]{4,})(?:(?=\W)|$)', self.providers['bugzilla.redhat.com'])
+        self._add('#munin', '(?<!\w)[dD][#:]([0-9]{4,})(?:(?=\W)|$)', self.providers['bugs.debian.org'])
+        self._add('#munin', '(?<!\w)[uU][#:]([0-9]{4,})(?:(?=\W)|$)', self.providers['launchpad.net/ubuntu'])
+        self._add('#munin', '(?<!\w)[rR][#:]([0-9]{4,})(?:(?=\W)|$)', self.providers['bugzilla.redhat.com'])
         self._add('#munin', '(?<!\w)#([0-9]{4,})(?:(?=\W)|$)', self.providers['munin-monitoring.org'])
 
         self._add('#tor-test', '(?<!\w)[dD]#([0-9]{4,})(?:(?=\W)|$)', self.providers['bugs.debian.org'])
